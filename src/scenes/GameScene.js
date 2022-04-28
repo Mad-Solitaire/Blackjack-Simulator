@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Deck from "../models/deck";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -10,6 +11,12 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, "table");
+    this.add.image(800, 800, "table");
+    this.deck = this.createDeck();
+  }
+
+  createDeck() {
+    const deck = new Deck();
+    console.log(deck);
   }
 }
