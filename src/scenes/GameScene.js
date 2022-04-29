@@ -8,10 +8,12 @@ export default class GameScene extends Phaser.Scene {
 
   preload() {
     this.load.image("table", "assets/background.png");
+    this.load.image("clubA", "assets/tile000.png");
   }
 
   create() {
     this.add.image(800, 800, "table");
+    this.add.image(200, 200, "clubA");
     this.deck = this.createDeck();
   }
 
