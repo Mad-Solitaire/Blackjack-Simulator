@@ -68,27 +68,45 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.add.image(700, 700, "table");
-    this.add.image(100, 200, "clubA").setScale(0.2);
-    this.add.image(200, 200, "club2").setScale(0.2);
-    this.add.image(300, 200, "club3").setScale(0.2);
-    this.add.image(400, 200, "club4").setScale(0.2);
-    this.add.image(500, 200, "club5").setScale(0.2);
-    this.add.image(600, 200, "club6").setScale(0.2);
-    this.add.image(700, 200, "club7").setScale(0.2);
-    this.add.image(100, 350, "club8").setScale(0.2);
-    this.add.image(200, 350, "club9").setScale(0.2);
-    this.add.image(300, 350, "club10").setScale(0.2);
-    this.add.image(400, 350, "clubJ").setScale(0.2);
-    this.add.image(500, 350, "clubQ").setScale(0.2);
-    this.add.image(600, 350, "clubK").setScale(0.2);
-    this.add.image(700, 350, "spadesA").setScale(0.2);
-    this.add.image(100, 500, "heartsA").setScale(0.2);
-    this.add.image(200, 500, "diamondsA").setScale(0.2);
-    this.deck = this.createDeck();
+    // this.add.image(100, 200, "clubA").setScale(0.2);
+    // this.add.image(200, 200, "club2").setScale(0.2);
+    // this.add.image(300, 200, "club3").setScale(0.2);
+    // this.add.image(400, 200, "club4").setScale(0.2);
+    // this.add.image(500, 200, "club5").setScale(0.2);
+    // this.add.image(600, 200, "club6").setScale(0.2);
+    // this.add.image(700, 200, "club7").setScale(0.2);
+    // this.add.image(100, 350, "club8").setScale(0.2);
+    // this.add.image(200, 350, "club9").setScale(0.2);
+    // this.add.image(300, 350, "club10").setScale(0.2);
+    // this.add.image(400, 350, "clubJ").setScale(0.2);
+    // this.add.image(500, 350, "clubQ").setScale(0.2);
+    // this.add.image(600, 350, "clubK").setScale(0.2);
+    // this.add.image(700, 350, "spadesA").setScale(0.2);
+    // this.add.image(100, 500, "heartsA").setScale(0.2);
+    // this.add.image(200, 500, "diamondsA").setScale(0.2);
+
+    this.player = {
+      balance: 0,
+      hand: [],
+      cardTotal: 0,
+    };
+
+    this.dealer = {
+      hand: [],
+      cardTotal: 0,
+    };
+    console.log(this.player);
+    this.createDeck();
   }
 
   createDeck() {
-    const deck = new Deck();
-    console.log(deck);
+    let newDeck = new Deck();
+    console.log(newDeck);
+    newDeck.shuffleDeck();
+  }
+
+  resetHands() {
+    this.player.hand = [];
+    this.dealer.hand = [];
   }
 }

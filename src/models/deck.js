@@ -1,4 +1,4 @@
-const SUITS = ["♦", "♣", "♥", "♠"];
+const SUITS = ["diamonds", "clubs", "spades", "hearts"];
 const VALUES = [
   "A",
   "2",
@@ -18,6 +18,26 @@ const VALUES = [
 export default class Deck {
   constructor(cards = newDeck()) {
     this.cards = cards;
+    this.drawCard = this.drawCard.bind(this);
+  }
+
+  drawCard() {
+    let drawnCard = this.cards.pop();
+    return drawnCard;
+    // console.log(drawnCard);
+  }
+
+  get deckQuantity() {
+    return this.cards.length;
+  }
+
+  shuffleDeck() {
+    for (let i = this.deckQuantity - 1; i > 0; i--) {
+      const newPosition = Math.floor(Math.random() * (i + 1));
+      const oldPosition = this.cards[newPosition];
+      this.cards[newPosition] = this.cards[i];
+      this.cards[i] = oldPosition;
+    }
   }
 }
 
