@@ -92,15 +92,22 @@ export default class GameScene extends Phaser.Scene {
     };
 
     this.dealer = {
-      hand: [],
+      hand: [{ suit: "spades", value: "A" }],
       cardTotal: 0,
     };
     let newDeck = this.createDeck();
     console.log(newDeck);
+
     this.drawPlayerCard(newDeck);
+    this.drawPlayerCard(newDeck);
+
     this.drawDealerCard(newDeck);
+
+    this.drawDealerCard(newDeck);
+
     console.log("PLAYER");
     console.log(this.player);
+
     console.log("DEALER");
     console.log(this.dealer);
   }
@@ -113,12 +120,36 @@ export default class GameScene extends Phaser.Scene {
 
   drawPlayerCard(deck) {
     let drawn = deck.cards.pop();
+
     this.player.hand.push(drawn);
+
+    let value = drawn.value;
+
+    if (value === "J" || value === "Q" || value === "K") {
+      this.player.cardTotal += 10;
+    } else if (value === "A") {
+      let total = this.player.cardTotal + 11;
+      this.player.cardTotal += total > 21 ? 1 : 11;
+    } else {
+      this.player.cardTotal += Number(value);
+    }
   }
 
   drawDealerCard(deck) {
     let drawn = deck.cards.pop();
+
     this.dealer.hand.push(drawn);
+
+    let value = drawn.value;
+
+    if (value === "J" || value === "Q" || value === "K") {
+      this.dealer.cardTotal += 10;
+    } else if (value === "A") {
+      let total = this.dealer.cardTotal + 11;
+      this.dealer.cardTotal += total > 21 ? 1 : 11;
+    } else {
+      this.dealer.cardTotal += Number(value);
+    }
   }
 
   resetHands() {
