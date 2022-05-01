@@ -18,13 +18,6 @@ const VALUES = [
 export default class Deck {
   constructor(cards = newDeck()) {
     this.cards = cards;
-    this.drawCard = this.drawCard.bind(this);
-  }
-
-  drawCard() {
-    let drawnCard = this.cards.pop();
-    return drawnCard;
-    // console.log(drawnCard);
   }
 
   get deckQuantity() {

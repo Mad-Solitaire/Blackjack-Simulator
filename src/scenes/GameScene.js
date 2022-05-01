@@ -95,14 +95,30 @@ export default class GameScene extends Phaser.Scene {
       hand: [],
       cardTotal: 0,
     };
+    let newDeck = this.createDeck();
+    console.log(newDeck);
+    this.drawPlayerCard(newDeck);
+    this.drawDealerCard(newDeck);
+    console.log("PLAYER");
     console.log(this.player);
-    this.createDeck();
+    console.log("DEALER");
+    console.log(this.dealer);
   }
 
   createDeck() {
     let newDeck = new Deck();
-    console.log(newDeck);
     newDeck.shuffleDeck();
+    return newDeck;
+  }
+
+  drawPlayerCard(deck) {
+    let drawn = deck.cards.pop();
+    this.player.hand.push(drawn);
+  }
+
+  drawDealerCard(deck) {
+    let drawn = deck.cards.pop();
+    this.dealer.hand.push(drawn);
   }
 
   resetHands() {
