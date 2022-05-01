@@ -47,7 +47,7 @@ export default class GameScene extends Phaser.Scene {
     this.load.image("hearts8", "assets/8_of_hearts.png");
     this.load.image("hearts9", "assets/9_of_hearts.png");
     this.load.image("hearts10", "assets/10_of_hearts.png");
-    this.load.image("heartsJ", "assets/hearts_of_hearts2.png");
+    this.load.image("heartsJ", "assets/jack_of_hearts2.png");
     this.load.image("heartsQ", "assets/queen_of_hearts2.png");
     this.load.image("heartsK", "assets/king_of_hearts2.png");
     //diamonds
@@ -61,7 +61,7 @@ export default class GameScene extends Phaser.Scene {
     this.load.image("diamonds8", "assets/8_of_diamonds.png");
     this.load.image("diamonds9", "assets/9_of_diamonds.png");
     this.load.image("diamonds10", "assets/10_of_diamonds.png");
-    this.load.image("diamondsJ", "assets/diamonds_of_diamonds2.png");
+    this.load.image("diamondsJ", "assets/jack_of_diamonds2.png");
     this.load.image("diamondsQ", "assets/queen_of_diamonds2.png");
     this.load.image("diamondsK", "assets/king_of_diamonds2.png");
   }
@@ -142,6 +142,11 @@ export default class GameScene extends Phaser.Scene {
       let placement = this.player.hand.length * 50 + 200;
       this.add.image(placement, 500, cardName).setScale(0.2);
     }
+    if (this.player.hand.length > 1) {
+      this.add.text(230, 400, `Player: ${String(this.player.cardTotal)}`, {
+        fontSize: "15px",
+      });
+    }
   }
 
   drawDealerCard(deck) {
@@ -167,6 +172,12 @@ export default class GameScene extends Phaser.Scene {
     } else {
       let placement = this.dealer.hand.length * 50 + 200;
       this.add.image(placement, 300, cardName).setScale(0.2);
+    }
+
+    if (this.dealer.hand.length > 1) {
+      this.add.text(230, 200, `Dealer: ${String(this.dealer.cardTotal)}`, {
+        fontSize: "15px",
+      });
     }
   }
 
