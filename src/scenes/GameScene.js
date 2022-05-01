@@ -9,19 +9,19 @@ export default class GameScene extends Phaser.Scene {
   preload() {
     this.load.image("table", "assets/background.png");
     //clubs
-    this.load.image("clubA", "assets/ace_of_clubs.png");
-    this.load.image("club2", "assets/2_of_clubs.png");
-    this.load.image("club3", "assets/3_of_clubs.png");
-    this.load.image("club4", "assets/4_of_clubs.png");
-    this.load.image("club5", "assets/5_of_clubs.png");
-    this.load.image("club6", "assets/6_of_clubs.png");
-    this.load.image("club7", "assets/7_of_clubs.png");
-    this.load.image("club8", "assets/8_of_clubs.png");
-    this.load.image("club9", "assets/9_of_clubs.png");
-    this.load.image("club10", "assets/10_of_clubs.png");
-    this.load.image("clubJ", "assets/jack_of_clubs2.png");
-    this.load.image("clubQ", "assets/queen_of_clubs2.png");
-    this.load.image("clubK", "assets/king_of_clubs2.png");
+    this.load.image("clubsA", "assets/ace_of_clubs.png");
+    this.load.image("clubs2", "assets/2_of_clubs.png");
+    this.load.image("clubs3", "assets/3_of_clubs.png");
+    this.load.image("clubs4", "assets/4_of_clubs.png");
+    this.load.image("clubs5", "assets/5_of_clubs.png");
+    this.load.image("clubs6", "assets/6_of_clubs.png");
+    this.load.image("clubs7", "assets/7_of_clubs.png");
+    this.load.image("clubs8", "assets/8_of_clubs.png");
+    this.load.image("clubs9", "assets/9_of_clubs.png");
+    this.load.image("clubs10", "assets/10_of_clubs.png");
+    this.load.image("clubsJ", "assets/jack_of_clubs2.png");
+    this.load.image("clubsQ", "assets/queen_of_clubs2.png");
+    this.load.image("clubsK", "assets/king_of_clubs2.png");
     //spades
     this.load.image("spadesA", "assets/ace_of_spades.png");
     this.load.image("spades2", "assets/2_of_spades.png");
@@ -68,19 +68,19 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.add.image(700, 700, "table");
-    // this.add.image(100, 200, "clubA").setScale(0.2);
-    // this.add.image(200, 200, "club2").setScale(0.2);
-    // this.add.image(300, 200, "club3").setScale(0.2);
-    // this.add.image(400, 200, "club4").setScale(0.2);
-    // this.add.image(500, 200, "club5").setScale(0.2);
-    // this.add.image(600, 200, "club6").setScale(0.2);
-    // this.add.image(700, 200, "club7").setScale(0.2);
-    // this.add.image(100, 350, "club8").setScale(0.2);
-    // this.add.image(200, 350, "club9").setScale(0.2);
-    // this.add.image(300, 350, "club10").setScale(0.2);
-    // this.add.image(400, 350, "clubJ").setScale(0.2);
-    // this.add.image(500, 350, "clubQ").setScale(0.2);
-    // this.add.image(600, 350, "clubK").setScale(0.2);
+    // this.add.image(100, 200, "clubsA").setScale(0.2);
+    // this.add.image(200, 200, "clubs2").setScale(0.2);
+    // this.add.image(300, 200, "clubs3").setScale(0.2);
+    // this.add.image(400, 200, "clubs4").setScale(0.2);
+    // this.add.image(500, 200, "clubs5").setScale(0.2);
+    // this.add.image(600, 200, "clubs6").setScale(0.2);
+    // this.add.image(700, 200, "clubs7").setScale(0.2);
+    // this.add.image(100, 350, "clubs8").setScale(0.2);
+    // this.add.image(200, 350, "clubs9").setScale(0.2);
+    // this.add.image(300, 350, "clubs10").setScale(0.2);
+    // this.add.image(400, 350, "clubsJ").setScale(0.2);
+    // this.add.image(500, 350, "clubsQ").setScale(0.2);
+    // this.add.image(600, 350, "clubsK").setScale(0.2);
     // this.add.image(700, 350, "spadesA").setScale(0.2);
     // this.add.image(100, 500, "heartsA").setScale(0.2);
     // this.add.image(200, 500, "diamondsA").setScale(0.2);
@@ -92,9 +92,10 @@ export default class GameScene extends Phaser.Scene {
     };
 
     this.dealer = {
-      hand: [{ suit: "spades", value: "A" }],
+      hand: [],
       cardTotal: 0,
     };
+
     let newDeck = this.createDeck();
     console.log(newDeck);
 
@@ -102,7 +103,6 @@ export default class GameScene extends Phaser.Scene {
     this.drawPlayerCard(newDeck);
 
     this.drawDealerCard(newDeck);
-
     this.drawDealerCard(newDeck);
 
     console.log("PLAYER");
@@ -133,6 +133,15 @@ export default class GameScene extends Phaser.Scene {
     } else {
       this.player.cardTotal += Number(value);
     }
+
+    let cardName = drawn.suit + drawn.value;
+
+    if (this.player.hand.length === 0) {
+      this.add.image(200, 500, cardName).setScale(0.2);
+    } else {
+      let placement = this.player.hand.length * 50 + 200;
+      this.add.image(placement, 500, cardName).setScale(0.2);
+    }
   }
 
   drawDealerCard(deck) {
@@ -149,6 +158,15 @@ export default class GameScene extends Phaser.Scene {
       this.dealer.cardTotal += total > 21 ? 1 : 11;
     } else {
       this.dealer.cardTotal += Number(value);
+    }
+
+    let cardName = drawn.suit + drawn.value;
+
+    if (this.dealer.hand.length === 0) {
+      this.add.image(200, 300, cardName).setScale(0.2);
+    } else {
+      let placement = this.dealer.hand.length * 50 + 200;
+      this.add.image(placement, 300, cardName).setScale(0.2);
     }
   }
 
