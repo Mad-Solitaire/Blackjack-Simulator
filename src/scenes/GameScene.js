@@ -67,7 +67,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(700, 700, "table");
+    this.add.image(600, 600, "table");
     // this.add.image(100, 200, "clubsA").setScale(0.2);
     // this.add.image(200, 200, "clubs2").setScale(0.2);
     // this.add.image(300, 200, "clubs3").setScale(0.2);

@@ -25,7 +25,9 @@
 		"parcel-plugin-static-files-copy": "^2.4.3"
 	},
 	"dependencies": {
+		"bulma": "^0.9.3",
 		"phaser": "^3.55.2",
+		"react": "^18.1.0",
 		"socket.io": "^4.5.0"
 	},
 	"parcelCleanPaths": [
