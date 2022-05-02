@@ -67,7 +67,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    
     this.add.image(600, 600, "table");
+    this.add.text(500,50, 'BLACK JACK', { fontFamily: "Goudy Bookletter 1911", fontSize: "75px",color: 'red'})
     // this.add.image(100, 200, "clubsA").setScale(0.2);
     // this.add.image(200, 200, "clubs2").setScale(0.2);
     // this.add.image(300, 200, "clubs3").setScale(0.2);
@@ -84,6 +86,14 @@ export default class GameScene extends Phaser.Scene {
     // this.add.image(700, 350, "spadesA").setScale(0.2);
     // this.add.image(100, 500, "heartsA").setScale(0.2);
     // this.add.image(200, 500, "diamondsA").setScale(0.2);
+
+    const stand = document.createElement('div')
+    stand.className = "button is-info"
+    stand.innerText = "STAND"
+        
+    const hit = document.createElement('div')
+    hit.className = "button is-danger"
+    hit.innerText = "HIT"
 
     this.player = {
       balance: 0,
@@ -110,6 +120,21 @@ export default class GameScene extends Phaser.Scene {
 
     console.log("DEALER");
     console.log(this.dealer);
+
+    const endGame = document.createElement('div')
+    endGame.className = "button is-primary"
+    endGame.innerText = "Quit Game"
+
+    this.add.dom(550,950,endGame)
+    .addListener('click').once('click', () => {
+      this.scene.start('buy-in-scene')
+      })
+    this.add.dom(450,450,stand)
+      .addListener('click').on('click', () => {
+        })
+    this.add.dom(450,500,hit)
+      .addListener('click').on('click', () => {
+        })
   }
 
   createDeck() {
